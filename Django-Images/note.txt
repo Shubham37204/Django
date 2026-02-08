@@ -1,0 +1,3 @@
+{% comment %} Note :  
+<a href="/{{ item.id }}/">  hardcore url 
+<a href="{% url 'mysite:detail' item.id %}"> no hardcore url and no namespacing   {% endcomment %}

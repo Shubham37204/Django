@@ -1,0 +1,42 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %}{{ item.name }}{% endblock %}
+
+{% block body %}
+
+<div class="detail-container">
+
+    <h1 class="detail-title">{{ item.name }}</h1>
+
+    <div class="detail-card">
+        <img 
+            src="{{ item.image }}" 
+            alt="{{ item.name  | upper }}" 
+            class="detail-image"
+        >
+
+        <div class="detail-info">
+            <p><strong>Description:</strong> {{ item.description }}</p>
+            <p class="detail-price">₹ {{ item.price }}</p>
+
+            <div class="action-buttons">
+                <a href="{% url 'mysite:edit' item.id %}" class="btn-edit">
+                    ✏️ Edit
+                </a>
+
+                <a href="{% url 'mysite:delete' item.id %}" 
+                   class="btn-delete"
+                   onclick="return confirm('Are you sure you want to delete this item?');">
+                    🗑 Delete
+                </a>
+
+                <a href="{% url 'mysite:home' %}" class="view-link back-link">
+                    ⬅ Back to Item List
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

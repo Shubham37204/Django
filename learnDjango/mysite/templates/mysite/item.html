@@ -1,0 +1,33 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %}
+  {% if form.instance.pk %}Edit Item{% else %}Add Item{% endif %}
+{% endblock %}
+
+{% block body %}
+
+<div class="form-container">
+  <h1>
+    {% if form.instance.pk %}
+      Edit Item
+    {% else %}
+      Add New Item
+    {% endif %}
+  </h1>
+
+  <form method="POST">
+    {{form.errors}}
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn-submit">
+      {% if form.instance.pk %}Update Item{% else %}Save Item{% endif %}
+    </button>
+
+    <a href="{% url 'mysite:home' %}" class="view-link back-link">
+      ⬅ Back to Item List
+    </a>
+  </form>
+</div>
+
+{% endblock %}

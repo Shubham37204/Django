@@ -1,0 +1,13 @@
+{% comment %}
+<form action="{% url 'post_view' %}" method="post">
+  {% csrf_token %}
+  <label for="team_name">Enter name: </label>
+  <input id="team_name" type="text" name="name" />
+  <input id="team_name" type="text" name="age" />
+  <button type="submit">Submit</button>
+</form>
+{% endcomment %}
+
+<form action="{% url 'post_view' %}" method="post">
+  {% csrf_token %} {{ form.as_p }}<button type="submit">Submit</button>
+</form>

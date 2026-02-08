@@ -1,0 +1,17 @@
+<h1>{{ user.username}}</h1>
+#user is a built-in obj in Django anf it has Username attribute in it
+<img src="{{ user.profile.image.url }}" />
+<p>Email: {{ user.email }}</p>
+
+{% comment %} part1 {% endcomment %}
+{% comment %} user is an object provided by Django for the currently logged-in
+user. From user, we access the related Profile model ie class Profile using
+user.profile. From the Profile object, we access the image field ie image inside
+of class Profile, and .url gives the browser-usable path of that image. {%
+endcomment %} 
+
+
+{% comment %} part2 {% endcomment %}
+{% comment %} user → User object user.profile → Profile's object
+user.profile.image → ImageField object user.profile.image.url → image path
+(string) {% endcomment %}

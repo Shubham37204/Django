@@ -1,0 +1,74 @@
+{% extends 'mysite/base.html' %}
+
+{% block title %}Item List{% endblock %}
+
+{% block body %}
+<h1>Item List</h1>
+
+<div class="item-table">
+
+    <div class="item-row item-header">
+        <div class="item-cell">Image</div>
+        <div class="item-cell">Name</div>
+        <div class="item-cell">Price</div>
+        <div class="item-cell">Action</div>
+    </div>
+
+    {% comment %} {% for item in items %} {% endcomment %}
+    {% for item in page_obj %}
+    <div class="item-row">
+
+        <div class="item-cell">
+            <img src="{{ item.image }}" width="80" alt="{{ item.name }}">
+        </div>
+
+        <div class="item-cell">
+            {{ item.name }}
+        </div>
+
+        <div class="item-cell">
+            ₹ {{ item.price }}
+        </div>
+
+        <div class="item-cell">
+            <a href="{% url 'mysite:detail' item.id %}" class="view-link">
+                View Details
+            </a>
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+<div>
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+    {% endif %}
+</div>
+
+
+{% endblock %}
+
+
+
+{% comment %} {% extends 'mysite/base.html' %}
+
+{% block title %}Item List{% endblock %}
+
+{% block body %}
+<h1>Item List</h1>
+
+{% for item in items %}
+<li>
+    <a href="{% url 'mysite:detail' item.id %}">
+        {{ item.name }}
+    </a>
+</li>
+{% endfor %}
+{% endblock %} {% endcomment %}

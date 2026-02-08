@@ -1,0 +1,9 @@
+<ul>
+  {% for todo in todos %}
+  <li><b>{{todo.id}} {{todo.title}}:</b> (Done: {{todo.done}}) (owner:{{todo.onwe.name}})</li>
+  {% endfor %}
+</ul>
+
+<form method="post">
+  {% csrf_token %} {{ form.as_p }}<button type="submit">Submit</button>
+</form>

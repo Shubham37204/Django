@@ -1,0 +1,45 @@
+# models.py = full database table structure (schema).
+from django.db import models
+
+
+class Person(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.id} - {self.name}"
+
+
+# class PriorityChoices(models.IntegerChoices):
+#     LOW = 1, 'Low'
+#     MEDIUM = 2, 'Medium'
+#     HIGH = 3, 'High'
+
+class Importance(models.TextChoices):
+    LOW = 'Low'
+    MEDIUM = 'Medium'
+    HIGH = 'High'
+
+
+class Todo(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=500)
+    done = models.BooleanField(default=False)
+    deadline = models.DateField(null=True, blank=True)
+    importance = models.IntegerField(
+        choices=Importance.choices,
+        null=True,
+        blank=True
+    )
+
+    owner = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='todos', null=True,
+                        blank=True)
+
+    def __str__(self):
+        return f"{self.id} - {self.title}"
+
+# models.py  (table structure)
+#       ↓
+# forms.py   (form blueprint made from the model)
+#       ↓
+# template.html  (shows the form to the user)
